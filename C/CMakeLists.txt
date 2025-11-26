@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.31.6)
 project(Uni-C-Assignments)
 
+subdirs(sdb)
 add_executable(RtlL RtlL.c)
 add_executable(Files Files.c)
 add_executable(CommaOp CommaOp.c)
 add_executable(Formats Formats.c)
+add_executable(Pointers Pointers.c)
 add_executable(Recursion Recursion.c)
 add_executable(LeftShift LeftShift.c)
 add_executable(TargetSum TargetSum.c)
