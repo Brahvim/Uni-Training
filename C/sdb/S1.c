@@ -2,73 +2,49 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stddef.h>
-#include <stdio.h>
 
-struct Student1 stRead1(void *p_data) {
-    size_t const version = (size_t) (*(size_t*) p_data);
-
-    if (version != 1) {
-
-        return ((struct Student1) {
-
-            /**/.name = NULL,
-                .version = 1,
-                .namelen = 0,
-                .roll = 0,
-
-        });
-
-    }
-
-    struct Student1 student;
-    student.version = version;
-    p_data += offsetof(struct Student1, version);
-
-    student.namelen = (size_t) (*(size_t*) p_data);
-    p_data += offsetof(struct Student1, namelen);
-
-    char *name = p_data;
-    strncpy((char*) &(student.name), p_data, student.namelen);
-    p_data += student.namelen * sizeof(typeof(*student.name));
-
-    student.roll = (size_t) (*(size_t*) p_data);
-
-    return student;
+struct Student1* stCreate1() {
+	struct Student1 *student = malloc(sizeof(struct Student1));
+	student->name = calloc(1, sizeof(student1_name_t)); // `"\0"`.
+	student->version = 1;
+	student->namelen = 1;
+	student->roll = 0;
+	return student;
 }
 
-struct Student1 stFread1(FILE *p_file) {
-    size_t version;
-    fread(&version, sizeof(size_t), 1, p_file);
-
-    if (version != 1) {
-
-        return ((struct Student1) {
-
-            /**/.name = NULL,
-                .version = 1,
-                .namelen = 0,
-                .roll = 0,
-
-        });
-
-    }
-
-    struct Student1 student;
-    student.version = version;
-    p_data += offsetof(struct Student1, version);
-
-    student.namelen = (size_t) (*(size_t*) p_data);
-    p_data += offsetof(struct Student1, namelen);
-
-    char *name = p_data;
-    strncpy((char*) &(student.name), p_data, student.namelen);
-    p_data += student.namelen * sizeof(typeof(*student.name));
-
-    student.roll = (size_t) (*(size_t*) p_data);
-
-    return student;
+void stLog1(struct Student1 *p_student) {
+	printf(
+		"[Student,version=%d,namelen=%d,name=%s,roll=%d]\n",
+		p_student->version,
+		p_student->namelen,
+		p_student->name,
+		p_student->roll
+	);
 }
 
-void stWrite1(struct Student1 *p_student, void *p_buf) {
-    *(size_t*) p_buf = p_student->version;
+struct Student1* st1Read1(FILE *p_file) {
+	struct Student1 *student = stCreate1();
+	fread(&student->version, sizeof(student1_version_t), 1, p_file);
+
+	if (student->version != 1) {
+
+		return student;
+
+	}
+
+	fread(&student->namelen, sizeof(student1_namelen_t), 1, p_file);
+
+	student->name = calloc(student->namelen, sizeof(student1_name_t));
+	fread(student->name, sizeof(student1_name_t), student->namelen, p_file);
+
+	fread(&student->roll, sizeof(student1_roll_t), 1, p_file);
+
+	return student;
+}
+
+void stWrite1(struct Student1 *p_student, FILE *p_file) {
+	fwrite(&p_student->version, sizeof(student1_version_t), 1, p_file);
+	fwrite(&p_student->namelen, sizeof(student1_namelen_t), 1, p_file);
+	fwrite(p_student->name, sizeof(student1_name_t), p_student->namelen, p_file);
+	fwrite(&p_student->roll, sizeof(student1_roll_t), 1, p_file);
 }
