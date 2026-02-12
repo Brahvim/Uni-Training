@@ -22,6 +22,6 @@ macro(mkprogsdir p_directory)
 endmacro(mkprogsdir)
 
 subdirs(#
-        "Semester-3" #
-        "Semester-4" #
+        "3" #
+        "4" #
 )
