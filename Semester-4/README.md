@@ -5,3 +5,5 @@
 - yt/@takeUforward.  
 - LC. Always.  
   
+*"Recursion is a technique where a function calls itself to solve smaller instances of a problem until a stopping condition is reached."*  
+  
