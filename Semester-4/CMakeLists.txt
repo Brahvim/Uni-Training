@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.31.6)
-project(Semester-4)
-
+include_directories(".")
 file(GLOB src "./**.c")
-list(REMOVE_ITEM src "Extern1.c")
-list(REMOVE_ITEM src "Extern2.c")
+project(Semester-4)
 mkprogsglob(src)
+
+target_link_libraries(Kadane m)

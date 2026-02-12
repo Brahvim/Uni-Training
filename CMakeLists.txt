@@ -18,6 +18,7 @@ endmacro(mkprogsglob)
 macro(mkprogsdir p_directory)
   file(GLOB src "$dir/**.c")
   mkprogsglob(src)
+  msg(src)
 endmacro(mkprogsdir)
 
 subdirs(#
