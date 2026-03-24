@@ -6,11 +6,11 @@
 char* strrev(char *const p_string, size_t const p_length) {
 	for (size_t i = 0; i < p_length / 2; i++) {
 
-		char const c2 = p_string[p_length - i - 1];
-		char const c1 = p_string[i];
+		char const second = p_string[p_length - i - 1];
+		char const first = p_string[i];
 
-		p_string[p_length - i - 1] = c1;
-		p_string[i] = c2;
+		p_string[p_length - i - 1] = first;
+		p_string[i] = second;
 
 	}
 
