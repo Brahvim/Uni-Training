@@ -5,9 +5,9 @@
 #define sizearr(p_array) (sizeof(p_array) / sizeof(p_array[0]))
 
 int main() {
-	int arr[] = { 3, 7, 11, 0, 2, 9, 13, 6, 8, 0 };
+	int arr[] = { 2, 3, 7, 1, 4, 2, 2, 8, 6, 6, 0, };
+	int bestValue = 12;
 	int const k = 3; // Window size.
-	int bestValue = INT32_MIN;
 	int bestId = -1;
 
 	for (size_t i = 0; i < sizearr(arr); i++) {
@@ -20,9 +20,8 @@ int main() {
 
 		}
 
-		if (sum > bestValue) {
+		if (sum == bestValue) {
 
-			bestValue = sum;
 			bestId = i;
 
 		}
