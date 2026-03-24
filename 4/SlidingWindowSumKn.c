@@ -10,11 +10,13 @@ int main() {
 	int bestValue = INT32_MIN;
 	int bestId = -1;
 
-	for (size_t i = 0; i < sizearr(arr); i++) {
+	size_t i = 0;
+	size_t j = k - 1;
+	while (j < sizearr(arr)) {
 
 		int sum = 0;
 
-		for (size_t j = 0; j < k; j++) {
+		for (size_t l = i; l < sizearr(arr) - k; j++) {
 
 			sum += arr[i + j];
 
