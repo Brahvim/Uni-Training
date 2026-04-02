@@ -75,3 +75,6 @@ int attempt2() {
 
 	}
 }
+
+int main() {}
+
