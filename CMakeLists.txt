@@ -22,6 +22,6 @@ macro(mkprogsdir p_directory)
 endmacro(mkprogsdir)
 
 subdirs(#
-        "3" #
-        "4" #
+        "src/3" #
+        "src/4" #
 )

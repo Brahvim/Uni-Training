@@ -9,33 +9,34 @@ public class Lc84Stack extends ArrayDeque<Integer> { // Easy wrapping! Dumb code
 	}
 
 	public static void main(final String... p_args) {
-		final Lc84Stack stk = new Lc84Stack();
+		final Lc84Stack st = new Lc84Stack();
 		// stack.forEach(System.out::println); // Test!
-		final Integer[] arr = new Integer[] { 16, 8, 0, 1, 3 };
-		new ArrayList<>(Arrays.asList(arr)).forEach(stk::push);
+		new ArrayList<>(Arrays.asList(new Integer[] { 16, 8, 0, 1, 3 })).forEach(st::push);
+		final int[] arr = new int[st.size()];
 
-		for (int i = stk.size() - 2; i > 0; i--) {
+		for (int i = st.size() - 2; i > 0; i--) {
 
-			while (stk.isEmpty() && arr[i] > stk.peek()) {
+			while (!st.isEmpty() && arr[i] < st.peek()) {
 
-				stk.push(arr[i]);
-				stk.pop();
+				st.push(arr[i]);
 
-				if (stk.isEmpty()) {
+			}
 
-					arr[i] = -1;
+			st.pop();
 
-				} else {
+			if (st.isEmpty()) {
 
-					arr[i] = stk.peek();
+				arr[i] = -1;
 
-				}
+			} else {
+
+				arr[i] = st.peek();
 
 			}
 
 		}
 
-		stk.forEach(System.out::println);
+		st.forEach(System.out::println);
 	}
 
 }
