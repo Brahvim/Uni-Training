@@ -2,14 +2,14 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Lc84Stack extends ArrayDeque<Integer> { // Easy wrapping! Dumb code #FTW!!!
+public class NextGreater extends ArrayDeque<Integer> { // Easy wrapping! Dumb code #FTW!!!
 
-	public Lc84Stack() {
+	public NextGreater() {
 		super.push(-1); // *Add this* **for ease of reporting** *in case* there's nothing larger!
 	}
 
 	public static void main(final String... p_args) {
-		final Lc84Stack st = new Lc84Stack();
+		final NextGreater st = new NextGreater();
 		// stack.forEach(System.out::println); // Test!
 		new ArrayList<>(Arrays.asList(new Integer[] { 16, 8, 0, 1, 3 })).forEach(st::push);
 		final int[] arr = new int[st.size()];

@@ -5,39 +5,38 @@
 #define sizearr(p_array) (sizeof(p_array) / sizeof(p_array[0]))
 
 int main(int const p_argc, char const *p_argv[]) {
-	int const arr[] = { 6, 8, 0, 1, 3 };
-	int const len = sizearr(arr);
-	int rollback = 0;
-	puts("[ ");
+	int const arr[] = { 1, 3, 0, 0, 0, 0, 0, 4, };
+	int const n = sizearr(arr);
+	int to/*talEntries*/ = 0;
+	int cur/*Count*/ = 0;
+	int s = 0;
+	int e = 0;
 
-	for (size_t i = 0; i < len; i++) {
+	while (e < n) {
 
-		if (arr[i] > arr[rollback]) {
+		if (arr[e] != 0) {
 
-			printf("%d ", arr[i]);
-			i = rollback;
-			++rollback;
-			continue;
+			// $Range * Length$!
+			to += (e - s) * (e - s + 1) / 2;
+			// to += (cur * cur + 1) / 2;
+			e++;
+
+			s = e;
+			cur = 0;
 
 		}
-		else if (i >= len) {
+		else {
 
-			i = rollback;
-			puts("-1 ");
+			to++;
+			e++;
 
-			if (rollback == len) {
+		}
 
-				break;
+		if (arr[n - 1] == 0) {
 
-			}
-
-			++rollback;
-			continue;
+			to += cur + cur;
 
 		}
 
 	}
-
-	puts(" ]");
-	exit(EXIT_SUCCESS);
 }
