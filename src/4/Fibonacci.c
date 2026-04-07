@@ -8,14 +8,9 @@
 
 // [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ... ]
 int fibonacci(int const p_number) {
-	if (p_number == 0) {
+	if (p_number < 1) {
 
-		return 0;
-
-	}
-	else if (p_number == 1) {
-
-		return 1;
+		return p_number;
 
 	}
 	else {
