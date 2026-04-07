@@ -7,7 +7,7 @@
 // *- Teach on recursion.*
 
 // [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ... ]
-int fibonacci(int const p_number) {
+size_t fibonacci(int const p_number) {
 	if (p_number < 1) {
 
 		return p_number;
