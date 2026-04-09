@@ -20,21 +20,23 @@ int* attempt1(int const *const p_array, int const p_length) {
 
 		puts("[ ");
 
-		for (size_t j = i + 1; j < p_length; j++) {
+		for (size_t j = 0; j < p_length; j++) {
 
-			if (j == i) {
+			int index = j + i + 1;
+
+			if (index == i) {
 
 				break;
 
 			}
-			else if (j > p_length) {
+			else if (index > p_length) {
 
-				j = 0;
+				index -= p_length;
 
 			}
 			else {
 
-				printf("%d ", p_array[j]);
+				printf("%d ", p_array[index]);
 
 			}
 
