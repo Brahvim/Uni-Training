@@ -4,4 +4,5 @@
         "src/3/java",
         "src/4/java",
     ],
+    "cmake.sourceDirectory": "/home/brahvim/Code/C/Uni-C-Assignments/src",
 }

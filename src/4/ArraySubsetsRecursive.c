@@ -15,69 +15,36 @@
 // ], for [ 5, 6, 7 ].
 // These can also be strings e.g. `"abc"`.
 
-int* attempt1(int const *const p_array, int const p_length) {
-	for (size_t i = 0; i < p_length; i++) {
+// Brute-forced:
+// i[0] -----------------> i[l]
+// 		j[i] ------------> j[l]
+// 			 k[j] -------> k[l]
 
-		puts("[ ");
+void attempt1(int const *const p_array, int const p_length) {
+	// int set[p_length]; // ...Ehhh, stackalloc, yes-yes...
 
-		for (size_t j = 0; j < p_length; j++) {
+	for (size_t i = 0; i < p_length - 1; i++) {
 
-			int index = j + i + 1;
+		printf("%d ", p_array[i]);
 
-			if (index == i) {
+		for (size_t j = i + 1; j < p_length; j++) {
 
-				break;
+			for (size_t k = j; k < p_length; k++) {
 
-			}
-			else if (index > p_length) {
+				for (size_t l = j; l <= k; l++) {
 
-				index -= p_length;
+					printf("%d ", p_array[l]);
 
-			}
-			else {
+				}
 
-				printf("%d ", p_array[index]);
+				puts("");
 
 			}
 
 		}
 
-		puts(" ]");
-
 	}
-}
 
-int* solutionFromTeacher(int const *const p_array, int const p_length) {
-	for (size_t i = 0; i < p_length; i++) {
-
-		puts("[ ");
-
-		for (size_t j = i; j < p_length; j++) {
-
-			for (size_t k = 0; k < i + 1; k++) {
-
-				if (j == i) {
-
-					break;
-
-				}
-				else if (j > p_length) {
-
-					j = 0;
-
-				}
-				else {
-
-					printf("%d ", p_array[j]);
-
-				}
-
-			}
-
-			puts(" ]");
-
-		}
-	}
 }
 
 int main(int const p_argc, char const *const *p_argv) {
